@@ -6,6 +6,12 @@ variable "project_id" {
 }
 
 
+variable "region" {
+  description = "region"
+  default     = "asia-northeast3"
+}
+
+
 variable "zone" { 
    type = string 
    default = "asia-northeast3-a" 

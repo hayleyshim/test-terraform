@@ -1,11 +1,11 @@
 provider "google" {
-  project     = "firm-protocol-366104"
-  region      = "asia-northeast3"
+  project     = var.project_id 
+  region      = var.region
 }
 
 resource "google_compute_network" "vpc_network" {
   project                 = var.project_id 
-  name                    = "vpc-network"
+  name                    = "{var.project_id}-vpc"
   auto_create_subnetworks = true
   mtu                     = 1460
 }
