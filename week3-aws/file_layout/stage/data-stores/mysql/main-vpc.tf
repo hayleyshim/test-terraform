@@ -1,9 +1,9 @@
-/*terraform {
+terraform {
   backend "s3" {
     bucket = "hayley-t101study-tfstate-week3-files"
     key    = "stage/data-stores/mysql/terraform.tfstate"
     region = "ap-northeast-2"
-    dynamodb_table = "terraform-locks-week3-files"
+    dynamodb_table = "terraform-locks"
   }
 }
 
@@ -82,4 +82,4 @@ resource "aws_security_group_rule" "rdssgoutbound" {
   protocol          = "-1"
   cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = aws_security_group.hayleysg2.id
-}*/
+}
