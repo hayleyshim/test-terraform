@@ -1,4 +1,4 @@
-/*resource "aws_db_subnet_group" "hayleydbsubnet" {
+resource "aws_db_subnet_group" "hayleydbsubnet" {
   name       = "hayleydbsubnetgroup"
   subnet_ids = [aws_subnet.hayleysubnet3.id, aws_subnet.hayleysubnet4.id]
 
@@ -9,7 +9,7 @@
 
 resource "aws_db_instance" "hayleyrds" {
   identifier_prefix      = "t101"
-  engine                 = "hayleysql"
+  engine                 = "mysql"
   allocated_storage      = 10
   instance_class         = "db.t2.micro"
   db_subnet_group_name   = aws_db_subnet_group.hayleydbsubnet.name
@@ -19,4 +19,4 @@ resource "aws_db_instance" "hayleyrds" {
   db_name                = var.db_name
   username               = var.db_username
   password               = var.db_password
-}*/
+}
