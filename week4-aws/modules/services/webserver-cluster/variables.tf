@@ -24,7 +24,7 @@ variable "db_remote_state_key" {
 variable "instance_type" {
   description = "The type of EC2 Instances to run (e.g. t2.micro)"
   type        = string
-  default     = "t2.micro"
+  default     = "t3.nano"
 }
 
 variable "min_size" {
@@ -49,4 +49,5 @@ variable "server_port" {
   type        = number
   default     = 8080
 }
+
 

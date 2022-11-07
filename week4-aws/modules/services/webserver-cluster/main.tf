@@ -9,17 +9,17 @@ terraform {
   }
 }
 
-
-
+# 참고 region별 AMI
+# https://github.com/openemr/openemr-devops/blob/master/packages/express_plus/OpenEMR-Express-Plus.json
 resource "aws_launch_configuration" "example" {
-  image_id        = "ami-0fb653ca2d3203ac1"
+  image_id        = "ami-0454bb2fefc7de534" // "ap-northeast-2" "UbuntuAMI"
   instance_type   = var.instance_type
   security_groups = [aws_security_group.instance.id]
 
   user_data = templatefile("${path.module}/user-data.sh", {
-    server_port = "${var.server_port}"
-    db_address  = "${data.terraform_remote_state.db.outputs.address}"
-    db_port     = "${data.terraform_remote_state.db.outputs.port}"
+    server_port = var.server_port
+    db_address  = data.terraform_remote_state.db.outputs.address
+    db_port     = data.terraform_remote_state.db.outputs.port
   })
 
   # Required when using a launch configuration with an auto scaling group.
@@ -27,6 +27,8 @@ resource "aws_launch_configuration" "example" {
     create_before_destroy = true
   }
 }
+
+
 
 resource "aws_autoscaling_group" "example" {
   launch_configuration = aws_launch_configuration.example.name
@@ -141,16 +143,6 @@ resource "aws_security_group_rule" "allow_all_outbound" {
   cidr_blocks = local.all_ips
 }
 
-data "terraform_remote_state" "db" {
-  backend = "s3"
-
-  config = {
-    bucket = "${var.db_remote_state_bucket}"
-    key    = "${var.db_remote_state_key}"
-    region = "ap-northeast-2"
-  }
-}
-
 locals {
   http_port    = 80
   any_port     = 0
@@ -170,3 +162,13 @@ data "aws_subnets" "default" {
   }
 }
 
+
+data "terraform_remote_state" "db" {
+  backend = "s3"
+
+  config = {
+    bucket = var.db_remote_state_bucket
+    key    = var.db_remote_state_key
+    region = "ap-northeast-2"
+  }
+}
