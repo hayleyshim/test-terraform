@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "hayleys3bucket" {
-  bucket = "hayley-t101study-tfstate-week4"
+  bucket = "hayley-t101study-tfstate"
 }
 
 # Enable versioning so you can see the full revision history of your state files

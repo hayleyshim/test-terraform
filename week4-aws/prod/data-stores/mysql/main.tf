@@ -12,8 +12,8 @@ terraform {
     # This backend configuration is filled in automatically at test time by Terratest. If you wish to run this example
     # manually, uncomment and fill in the config below.
 
-    bucket         = "hayley-t101study-tfstate-week4"
-    key            = "stage/date-stores/mysql/terraform.tfstate"
+    bucket         = "hayley-t101study-tfstate"
+    key            = "prod/date-stores/mysql/terraform.tfstate"
     region         = "ap-northeast-2"
     dynamodb_table = "terraform-locks"
     encrypt        = true
