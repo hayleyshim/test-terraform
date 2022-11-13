@@ -25,6 +25,7 @@ module "webserver_cluster" {
   instance_type = "t3.nano"
   min_size      = 2
   max_size      = 2
+  enable_autoscaling   = false //추가
 }
 
 resource "aws_security_group_rule" "allow_testing_inbound" {

@@ -39,6 +39,11 @@ variable "max_size" {
   default     = 1
 }
 
+variable "enable_autoscaling" {
+  description = "If set to true, enable auto scaling"
+  type        = bool
+}
+
 # ---------------------------------------------------------------------------------------------------------------------
 # OPTIONAL PARAMETERS
 # These parameters have reasonable defaults.
@@ -50,4 +55,10 @@ variable "server_port" {
   default     = 8080
 }
 
+//  for_each 를 사용하여 ASG 에 tag 인라인 블록을 동적으로 생성
+variable "custom_tags" {
+  description = "Custom tags to set on the Instances in the ASG"
+  type        = map(string)
+  default     = {}
+}
 
